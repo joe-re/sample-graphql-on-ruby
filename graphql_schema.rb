@@ -5,6 +5,7 @@ PostType = GraphQL::ObjectType.define do
   field :id, !types.ID, "The unique ID for this post"
   field :title, !types.String, "The title of this post"
   field :body, !types.String,  "The body of this post"
+  field :comments, -> { !types[!CommentType] }, "Responses to this post"
 end
 
 QueryRoot = GraphQL::ObjectType.define do
@@ -20,3 +21,13 @@ QueryRoot = GraphQL::ObjectType.define do
     }
   end
 end
+
+CommentType = GraphQL::ObjectType.define do
+  name "Comment"
+  description "A reply to a post"
+
+  field :id, !types.ID, "The unique ID of this comment"
+  field :body, !types.String, "The content of this comment"
+  field :post, !PostType, "The post this comment replies to"
+end
+

@@ -2,6 +2,7 @@
 $LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__)))
 require 'graphql'
 require 'migration'
+require 'comment'
 require 'post'
 require 'seed'
 require 'graphql_schema'
