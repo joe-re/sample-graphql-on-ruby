@@ -10,18 +10,11 @@ class InitialSchema < ActiveRecord::Migration
     create_table :posts do |t|
       t.string :title, null: false
       t.string :body, null: false
-      t.references :comments
-    end
-
-    create_table :comments do |t|
-      t.string :body, null: false
-      t.references :post
     end
   end
 
   def self.down
     drop_table :posts
-    drop_table :comments
   end
 end
 
