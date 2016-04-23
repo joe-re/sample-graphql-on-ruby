@@ -7,3 +7,16 @@ PostType = GraphQL::ObjectType.define do
   field :body, !types.String,  "The body of this post"
 end
 
+QueryRoot = GraphQL::ObjectType.define do
+  name "Query"
+  description "The query root for this schema"
+
+  field :post do
+    type PostType
+    description "Find a Post by id"
+    argument :id, !types.ID
+    resolve -> (object, arguments, context) {
+      Post.find(arguments["id"])
+    }
+  end
+end
