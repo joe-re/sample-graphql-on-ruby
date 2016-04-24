@@ -31,3 +31,17 @@ CommentType = GraphQL::ObjectType.define do
   field :post, !PostType, "The post this comment replies to"
 end
 
+MutationRoot = GraphQL::ObjectType.define do
+  name 'Mutation'
+  description 'The root for mutations in this schema'
+  field :createPost do
+    type PostType
+    description 'Create a post'
+    argument :title, !types.String
+    argument :body, !types.String
+    resolve -> (object, arguments, context) {
+      Post.create(title: arguments[:title], body: arguments[:body])
+    }
+  end
+end
+

@@ -7,6 +7,6 @@ require 'post'
 require 'seed'
 require 'graphql_schema'
 
-Schema = GraphQL::Schema.new(query: QueryRoot)
+Schema = GraphQL::Schema.new(query: QueryRoot, mutation: MutationRoot)
 result_hash = Schema.execute(ARGV[0])
 p result_hash
