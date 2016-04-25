@@ -41,8 +41,19 @@ CreatePostField = GraphQL::Field.define do |f|
   }
 end
 
+CreateCommentField = GraphQL::Field.define do |f|
+  f.type CommentType
+  f.description 'Create a comment'
+  f.argument :post_id, !types.ID
+  f.argument :body, !types.String
+  f.resolve -> (object, arguments, context) {
+    Comment.create(post_id: arguments[:post_id], body: arguments[:body])
+  }
+end
+
 MutationRoot = GraphQL::ObjectType.define do
   name 'Mutation'
   description 'The root for mutations in this schema'
   field :createPost, field: CreatePostField
+  field :createComment, field: CreateCommentField
 end
