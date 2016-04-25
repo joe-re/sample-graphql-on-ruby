@@ -57,3 +57,5 @@ MutationRoot = GraphQL::ObjectType.define do
   field :createPost, field: CreatePostField
   field :createComment, field: CreateCommentField
 end
+
+Schema = GraphQL::Schema.new(query: QueryRoot, mutation: MutationRoot)

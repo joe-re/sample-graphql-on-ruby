@@ -1,9 +1,6 @@
-require 'active_record'
-
-ActiveRecord::Base.establish_connection(
-  adapter:   'sqlite3',
-  database:  ':memory:'
-)
+#!/usr/bin/env ruby
+$LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__)))
+require 'db_connect'
 
 class InitialSchema < ActiveRecord::Migration
   def self.up
